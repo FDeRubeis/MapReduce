@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: coord
+spec:
+  selector:
+    app: coord
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: coord-port
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coord
+  labels:
+    app: coord
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: coord
+  template:
+    metadata:
+      labels:
+        app: coord
+    spec:
+      containers:
+        - name: coord
+          image: fabdock/mapreduce-coord
+          ports:
+            - name: coord-port
+              containerPort: 80
+          env:
+          - name: HTTP_WORKERS_NUM
+            value: "10"
+          - name : MAP_SVC_NAME
+            value: "map"
+          - name : MAP_SVC_PORT
+            value: "80"
+          - name: "SHUFFLE_SVC_NAME"
+            value: "shuffle"
+          - name: "SHUFFLE_SVC_PORT"
+            value: "80"
+          - name : REDUCE_SVC_NAME
+            value: "reduce"
+          - name : REDUCE_SVC_PORT
+            value: "80"
