@@ -33,8 +33,6 @@ To process a document, the following steps are performed:
 
 This implementation is a simplified version of the MapReduce model loosely inspired by [3]. The presence of a coordinator makes the design easier, but it also reduces the parallelism of the operation. For this reason, this project is probably not suitable for production environments: its purpose is mainly to learn and demonstrate the use of Kubernetes tools in a "real-life" problem.
 
-It is still interesting to notice that the system can process multiple documents simultaneously. The coordinator, in fact, will create a separate thread for each document it receives. It is also possible to employ multiple coordinators, each of them processing one or more documents. For this reson, I implemented the coordinator as a worker of a horizontally scalable ["coord"](./deployments/coord.yaml) service.
-
 ## Usage
 
 In order to use the service, apply the manifests from the repository:
