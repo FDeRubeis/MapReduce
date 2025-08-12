@@ -1,6 +1,6 @@
 # MapReduce
 
-This repository contains a simple implementation of the MapReduce model for word counting. It was developed to explore and demonstrate the use of Docker and Kubernetes in a microservices context. Work is currently underway to integrate GitLab CI/CD and certain Ansible functionalities.
+This repository contains a simple implementation of the MapReduce model for word counting. This implementation was developed to explore and demonstrate the use of Docker and Kubernetes in a microservices context. Work is currently underway to integrate GitLab CI/CD and certain Ansible functionalities.
 
 ## MapReduce
 
