@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: shuffle
+  labels:
+    app: shuffle
+spec:
+  ports:
+  - port: 80
+    name: shuffle-port
+  clusterIP: None
+  selector:
+    app: shuffle
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata: 
+  name: shuffle
+spec:
+  serviceName: shuffle
+  replicas: 5
+  selector:
+    matchLabels:
+      app: shuffle
+  template:
+    metadata:
+      labels:
+        app: shuffle
+    spec:
+      containers:
+        - name: shuffle
+          image: fabdock/mapreduce-shuffle
+          ports:
+            - name: shuffle-port
+              containerPort: 80
